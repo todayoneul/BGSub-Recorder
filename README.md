@@ -26,7 +26,7 @@ OpenCV를 사용해 웹캠 영상을 실시간으로 확인하고, 밝기/대비
 - **실시간 민감도 제어:** 차영상(Background Subtraction)의 민감도를 조절하여 이마 번들거림이나 그림자 소실 방지
 - **원본 영상 녹화:** `assets/output.avi` (밝기/대비 조절 반영)
 - **배경 제거 영상 녹화:** `assets/output_no_background.avi`
-- **Preview와 Record 모드:** 영상을 중간에 멈췄다가 다시 녹화를 진행(space바로 제어)
+- **Preview와 Record 모드:** 영상을 중간에 멈췄다가 다시 녹화를 진행 (space바 제어)
 - **전경 스냅샷 저장:** 현재 화면에서 추출된 객체를 `assets/output_face.png`로 저장
 
 ## 실행 환경
