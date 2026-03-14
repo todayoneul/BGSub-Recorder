@@ -1,4 +1,5 @@
-# .png와 .avi 파일은 제외
-*.png
 *.avi
-*.gif
+
+# assets 폴더 내의 스냅샷과 GIF는 README 표시를 위해 허용
+!assets/*.png
+!assets/*.gif

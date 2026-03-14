@@ -1,5 +1,10 @@
 import cv2 as cv
 import numpy as np
+import os
+
+# 결과물을 저장할 assets 폴더 생성
+if not os.path.exists('assets'):
+    os.makedirs('assets')
 
 contrast = 1.0
 brightness = 0
@@ -91,8 +96,8 @@ height = int(cap.get(cv.CAP_PROP_FRAME_HEIGHT))
 fps = 30.0
 
 # 2. 동영상 파일 만들기 준비
-out = cv.VideoWriter('output.avi', fourcc, fps, (width, height))
-out_no_bg = cv.VideoWriter('output_no_background.avi', fourcc, fps, (width, height))
+out = cv.VideoWriter('assets/output.avi', fourcc, fps, (width, height))
+out_no_bg = cv.VideoWriter('assets/output_no_background.avi', fourcc, fps, (width, height))
 
 # 기본 모드는 Preview (녹화 안 함)
 recording = False 
@@ -211,8 +216,8 @@ while True:
         print(f"민감도: {sensitivity:.2f}")
     elif key_low in (ord('b'), ord('B'), ord('1')):
         background_frame = adjusted_frame.copy()
-        cv.imwrite('background.png', background_frame)
-        print("배경을 background.png로 저장했습니다.")
+        cv.imwrite('assets/background.png', background_frame)
+        print("배경을 assets/background.png로 저장했습니다.")
     elif key_low in (ord('f'), ord('F'), ord('2')):
         if background_frame is None:
             print("먼저 B 키로 배경을 저장하세요.")
@@ -221,8 +226,8 @@ while True:
             if foreground is None:
                 print("객체를 찾지 못했습니다. 배경을 다시 저장하거나 민감도(+/-)를 조절하세요.")
             else:
-                cv.imwrite('output_face.png', foreground)
-                print("분리된 객체를 output_face.png로 저장했습니다.")
+                cv.imwrite('assets/output_face.png', foreground)
+                print("분리된 객체를 assets/output_face.png로 저장했습니다.")
 
     # 5. 프로그램 종료
     elif key_low == 27: # ESC 키
