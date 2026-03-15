@@ -16,6 +16,12 @@ OpenCV를 사용해 웹캠 영상을 실시간으로 확인하고, 밝기/대비
 |:---:|:---:|
 | ![Original Video](assets/output.gif) | ![Foreground Video](assets/output_no_background.gif) |
 
+### 3. 밝기 및 대비 조절 (Brightness & Contrast Adjustment)
+
+| 실시간 밝기 및 대비 조절 데모 (`assets/rstp_bright_contrast.gif`) |
+|:---:|
+| ![Brightness and Contrast Demo](assets/rstp_bright_contrast.gif) |
+
 > **Tip:** 프로그램을 실행하고 `Space` 키(녹화), `B` 키(배경 저장), `F` 키(객체 스냅샷)를 누르면 `assets/` 폴더에 파일이 생성됩니다.  
 > GIF는 `ffmpeg -i assets/output.avi assets/output.gif` 명령어로 변환하여 확인할 수 있습니다.
 
@@ -79,3 +85,22 @@ OpenCV를 사용해 웹캠 영상을 실시간으로 확인하고, 밝기/대비
 - 배경을 저장할 때(`B` 키)는 카메라 앞에서 잠시 비켜서서 빈 배경이 찍히도록 하세요.
 - **이마나 목 부분이 뚫려 보인다면 `+` 키를 눌러 민감도를 높이세요.**
 - 조명이 바뀌거나 카메라 위치가 이동하면 `B` 키를 눌러 배경을 갱신하는 것이 좋습니다.
+
+## IP 카메라(RTSP) 지원 및 확장 기능
+
+### 1. 비디오 소스 선택 (Local & RTSP/IP Camera)
+- 실행 시 `--source` 명령줄 인자를 통해 소스를 직접 지정하거나, 인자 없이 실행하여 대화형 메뉴에서 영상 소스를 선택할 수 있습니다.
+- **로컬 카메라:** `0`, `1` 등 카메라 인덱스 입력
+- **IP 카메라 (RTSP/HLS):** `rtsp://...` 또는 `http://.../playlist.m3u8` 주소 입력
+
+### 2. RTSP 영상 밝기 및 대비 조절 (Brightness & Contrast)
+- RTSP나 HLS를 통한 실시간 스트리밍 영상에서도 방향키(`←`, `→`, `↑`, `↓`)를 사용하여 실시간으로 밝기와 대비를 보정할 수 있습니다.
+- `rstp_bright_contrast.mov` 영상을 통해 실시간 노출 보정 기능이 작동하는 모습을 확인할 수 있습니다.
+
+### 3. RTSP 전경 추출 결과 (RTSP Snapshots)
+
+| RTSP 기준 배경 (`assets/background_rtsp.png`) | RTSP 전경 추출 결과 (`assets/output_face_rtsp.png`) |
+|:---:|:---:|
+| ![RTSP Background](assets/background_rtsp.png) | ![RTSP Foreground](assets/output_face_rtsp.png) |
+
+> **RTSP 사용 팁:** 네트워크 환경에 따라 스트리밍 지연이 발생할 수 있으나, 밝기 및 대비 조절 기능은 로컬 카메라와 동일하게 실시간으로 적용됩니다.

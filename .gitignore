@@ -3,3 +3,4 @@
 # assets 폴더 내의 스냅샷과 GIF는 README 표시를 위해 허용
 !assets/*.png
 !assets/*.gif
+rstp_bright_contrast.mov

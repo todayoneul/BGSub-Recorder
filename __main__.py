@@ -1,6 +1,29 @@
 import cv2 as cv
 import numpy as np
 import os
+import argparse
+
+def get_video_source():
+    parser = argparse.ArgumentParser(description="OpenCV Video Recorder")
+    parser.add_argument('--source', type=str, help='Video source (camera index or RTSP URL)')
+    args, _ = parser.parse_known_args()
+
+    if args.source is not None:
+        if args.source.isdigit():
+            return int(args.source)
+        return args.source
+    
+    print("비디오 소스를 선택하세요:")
+    print("1. 로컬 카메라 (기본값: 0)")
+    print("2. IP 카메라 (RTSP 주소 입력)")
+    choice = input("선택 (1 또는 2, 기본값 1): ").strip()
+    
+    if choice == '2':
+        rtsp_url = input("RTSP 주소를 입력하세요: ").strip()
+        return rtsp_url
+    else:
+        cam_idx = input("카메라 인덱스를 입력하세요 (기본값 0): ").strip()
+        return int(cam_idx) if cam_idx.isdigit() else 0
 
 # 결과물을 저장할 assets 폴더 생성
 if not os.path.exists('assets'):
@@ -83,7 +106,8 @@ def extract_foreground(background_img, current_img, sens=1.0):
 
 
 # 1. 카메라 영상 얻기
-cap = cv.VideoCapture(0)
+source = get_video_source()
+cap = cv.VideoCapture(source)
 
 if not cap.isOpened():
     print("카메라를 열 수 없습니다.")
