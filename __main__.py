@@ -58,7 +58,7 @@ def extract_foreground(background_img, current_img, sens=1.0):
     b, g, r = cv.split(diff_rgb)
     gray_diff_rgb = cv.max(cv.max(b, g), r)
 
-    # 3. HSV 채도(Saturation) 차이 계산 (이마 번들거림 보정용)
+    # 3. HSV 채도(Saturation) 차이 계산 (이마 노이즈 보정용)
     bg_hsv = cv.cvtColor(bg_blur, cv.COLOR_BGR2HSV)
     cur_hsv = cv.cvtColor(cur_blur, cv.COLOR_BGR2HSV)
     diff_hsv = cv.absdiff(cur_hsv, bg_hsv)
